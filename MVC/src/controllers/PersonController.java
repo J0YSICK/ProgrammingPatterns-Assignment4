@@ -20,4 +20,12 @@ public class PersonController {
     public Person getPerson(){
         return person.getPerson();
     }
+    
+    public Person getPersonById(int id){
+        return person.getPersonById(id);
+    }
+    
+    public Person getPersonByFirstName(String name){
+        return person.getPersonByFirstName(name);
+    }
 }

@@ -8,8 +8,12 @@ import controllers.PersonController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import models.Person;
 
 /**
  *
@@ -30,8 +34,26 @@ public class PersonView extends VBox{
         Label firstNameLbl = new Label("First Name:");
          
         firstNameTxt = new TextField();
+        firstNameTxt.setMaxWidth(180);
         
-        Button displayFNameBtn = new Button("Display First Name");
+        Button searchBtn = new Button("Search");
+        
+        TableView tableView = new TableView();
+        TableColumn<Person, String> firstNameCol = new TableColumn<>("First Name");
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        
+        TableColumn<Person, String> lastNameCol = new TableColumn<>("Last Name");
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        
+        TableColumn<Person, String> salaryCol = new TableColumn<>("Salary");
+        salaryCol.setCellValueFactory(new PropertyValueFactory<>("salary"));
+        
+        tableView.getColumns().addAll(firstNameCol, lastNameCol, salaryCol);
+        
+        tableView.getItems().add(personController.getPersonById(1));
+        tableView.getItems().add(personController.getPersonById(2));
+        tableView.getItems().add(personController.getPersonById(3));
+        
         //Note: we could an event handler in the view that interacts with the model
         // and gets the data
         // This pattern is referred to as Model-View-ViewModel (MVVM)
@@ -41,11 +63,13 @@ public class PersonView extends VBox{
         // with the views and other services
         this.getChildren().add(firstNameLbl);
         this.getChildren().add(firstNameTxt);
-        this.getChildren().add(displayFNameBtn);
+        this.getChildren().add(searchBtn);
+        this.getChildren().add(tableView);
         
-        displayFNameBtn.setOnAction(event -> {
-            String firstName = personController.getPerson().getFirstName();
-            firstNameTxt.setText(firstName);
+        searchBtn.setOnAction(event -> {
+            tableView.getItems().clear();
+            //String firstName = personController.getPerson().getFirstName();
+            tableView.getItems().add(personController.getPersonByFirstName(firstNameTxt.getText()));
         });
     }
     
