@@ -5,7 +5,6 @@
 package views;
 
 import controllers.PersonController;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -17,7 +16,7 @@ import models.Person;
 
 /**
  *
- * @author 6290479
+ * @author 2072658
  */
 public class PersonView extends VBox{
     TextField firstNameTxt;
@@ -48,7 +47,10 @@ public class PersonView extends VBox{
         TableColumn<Person, String> salaryCol = new TableColumn<>("Salary");
         salaryCol.setCellValueFactory(new PropertyValueFactory<>("salary"));
         
-        tableView.getColumns().addAll(firstNameCol, lastNameCol, salaryCol);
+        TableColumn<Person, String> deptCol = new TableColumn<>("Department ID");
+        deptCol.setCellValueFactory(new PropertyValueFactory<>("deptID"));
+        
+        tableView.getColumns().addAll(firstNameCol, lastNameCol, salaryCol, deptCol);
         
         tableView.getItems().add(personController.getPersonById(1));
         tableView.getItems().add(personController.getPersonById(2));

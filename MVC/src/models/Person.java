@@ -12,10 +12,10 @@ import java.sql.SQLException;
 
 /**
  *
- * @author 6290479
+ * @author 2072658
  */
 public class Person {
-    private int id, departmentId;
+    private int id, deptID;
     private String firstName, lastName, title;
     private double salary;
     
@@ -23,12 +23,12 @@ public class Person {
         
     }
     
-    public Person(int id, String firstName, String lastName, String title, int departmentId, double salary){
+    public Person(int id, String firstName, String lastName, String title, int deptID, double salary){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
-        this.departmentId = departmentId;
+        this.deptID = deptID;
         this.salary = salary;
     }
 
@@ -55,7 +55,14 @@ public class Person {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-    
+
+    public int getDeptID() {
+        return deptID;
+    }
+
+    public void setDeptID(int deptID) {
+        this.deptID = deptID;
+    }
     
     public Person getPerson(){
         Person person = new Person();
@@ -80,9 +87,9 @@ public class Person {
                 this.id = rs.getInt("id");
                 this.firstName = rs.getString("firstName");
                 this.lastName = rs.getString("lastName");
-                this.departmentId = rs.getInt("departmentId");
+                this.deptID = rs.getInt("deptID");
                 this.salary = rs.getDouble("salary");
-                return new Person(id,firstName,lastName,title,departmentId, salary);
+                return new Person(id,firstName,lastName,title,deptID, salary);
             }
             // Close connection
             conn.close();
@@ -109,9 +116,9 @@ public class Person {
                 this.id = rs.getInt("id");
                 this.firstName = rs.getString("firstName");
                 this.lastName = rs.getString("lastName");
-                this.departmentId = rs.getInt("departmentId");
+                this.deptID = rs.getInt("deptID");
                 this.salary = rs.getDouble("salary");
-                return new Person(id,firstName,lastName,title,departmentId, salary);
+                return new Person(id,firstName,lastName,title,deptID, salary);
             }
             // Close connection
             conn.close();

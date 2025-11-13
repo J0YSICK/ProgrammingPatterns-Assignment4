@@ -6,7 +6,7 @@ package database;
 import java.sql.*;
 /**
  *
- * @author 6290479
+ * @author 2072658
  */
 public class ConnectionManager {
     

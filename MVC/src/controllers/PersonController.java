@@ -8,7 +8,7 @@ import models.Person;
 
 /**
  *
- * @author 6290479
+ * @author 2072658
  */
 public class PersonController {
     Person person;
